@@ -170,6 +170,10 @@ function App() {
     setIsLoading(true);
     setError(null);
 
+    // Create an AbortController for timeout handling
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 60000); // 60 second timeout
+
     try {
       const formData = new FormData();
       formData.append('image', selectedFile);
@@ -177,7 +181,10 @@ function App() {
       const response = await fetch('/api/analyze', {
         method: 'POST',
         body: formData,
+        signal: controller.signal,
       });
+
+      clearTimeout(timeoutId);
 
       const data = await response.json();
 
@@ -187,7 +194,11 @@ function App() {
 
       setResults(data);
     } catch (err) {
-      setError(err.message || 'An error occurred while analyzing the image');
+      if (err.name === 'AbortError') {
+        setError('Request timed out. Please try again.');
+      } else {
+        setError(err.message || 'An error occurred while analyzing the image');
+      }
     } finally {
       setIsLoading(false);
     }

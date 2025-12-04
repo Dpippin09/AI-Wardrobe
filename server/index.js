@@ -66,7 +66,17 @@ async function analyzeClothingImage(imagePath) {
   
   const imageBuffer = fs.readFileSync(imagePath);
   const base64Image = imageBuffer.toString('base64');
-  const mimeType = imagePath.endsWith('.png') ? 'image/png' : 'image/jpeg';
+  
+  // Map file extensions to MIME types
+  const ext = path.extname(imagePath).toLowerCase();
+  const mimeTypeMap = {
+    '.png': 'image/png',
+    '.jpg': 'image/jpeg',
+    '.jpeg': 'image/jpeg',
+    '.gif': 'image/gif',
+    '.webp': 'image/webp'
+  };
+  const mimeType = mimeTypeMap[ext] || 'image/jpeg';
 
   const response = await client.chat.completions.create({
     model: 'gpt-4o',
@@ -214,19 +224,27 @@ app.post('/api/analyze', upload.single('image'), async (req, res) => {
 
 // Clean up old uploads (files older than 1 hour)
 function cleanupOldUploads() {
-  const uploadDir = path.join(__dirname, 'uploads');
-  if (!fs.existsSync(uploadDir)) return;
+  try {
+    const uploadDir = path.join(__dirname, 'uploads');
+    if (!fs.existsSync(uploadDir)) return;
 
-  const files = fs.readdirSync(uploadDir);
-  const oneHourAgo = Date.now() - (60 * 60 * 1000);
+    const files = fs.readdirSync(uploadDir);
+    const oneHourAgo = Date.now() - (60 * 60 * 1000);
 
-  files.forEach(file => {
-    const filePath = path.join(uploadDir, file);
-    const stats = fs.statSync(filePath);
-    if (stats.mtimeMs < oneHourAgo) {
-      fs.unlinkSync(filePath);
-    }
-  });
+    files.forEach(file => {
+      try {
+        const filePath = path.join(uploadDir, file);
+        const stats = fs.statSync(filePath);
+        if (stats.mtimeMs < oneHourAgo) {
+          fs.unlinkSync(filePath);
+        }
+      } catch (fileError) {
+        console.error(`Error cleaning up file ${file}:`, fileError.message);
+      }
+    });
+  } catch (error) {
+    console.error('Error during upload cleanup:', error.message);
+  }
 }
 
 // Run cleanup every 30 minutes
