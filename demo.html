@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Wardrobe - Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+
+        .upload-area {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 60px;
+            margin: 40px auto;
+            max-width: 600px;
+            text-align: center;
+            border: 3px dashed rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .upload-area:hover {
+            border-color: #FFD700;
+            background: rgba(255, 215, 0, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .upload-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .upload-area h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .upload-area p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .upload-button {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #333;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .upload-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .feature h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #FFD700;
+        }
+
+        .feature p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .demo-note {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid #FFD700;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 40px auto;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .demo-note h3 {
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .demo-results {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 1000px;
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .uploaded-image {
+            max-width: 200px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .analysis-details {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .reset-button {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto 0;
+            transition: all 0.3s ease;
+        }
+
+        .reset-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .analysis-grid {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            .upload-area {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>AI Wardrobe</h1>
+            <p>Discover perfect clothing matches with artificial intelligence</p>
+        </header>
+
+        <div class="demo-note">
+            <h3>🎯 Demo Mode</h3>
+            <p>This is a demonstration of the AI Wardrobe system. Click "Upload Image" below to see how the interface works with sample data. In the full version, you would upload a real photo of your clothing item for AI analysis.</p>
+        </div>
+
+        <div id="upload-section">
+            <div class="upload-area" onclick="startDemo()">
+                <div class="upload-icon">📸</div>
+                <h2>Upload Your Clothing Item</h2>
+                <p>Take a clear photo of a piece of clothing you own and let our AI find perfect matching pieces for you</p>
+                <button class="upload-button">Choose Image (Demo)</button>
+                <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.7;">
+                    Supported formats: JPEG, PNG, GIF, WebP
+                </p>
+            </div>
+        </div>
+
+        <div id="results-section" class="hidden">
+            <div class="demo-results">
+                <h2 style="text-align: center; margin-bottom: 30px; font-size: 2.5rem;">Perfect Matches Found! 🎉</h2>
+                <p style="text-align: center; margin-bottom: 30px; font-size: 1.2rem;">Here are clothing items that would look great with your blue dress shirt</p>
+                
+                <div class="analysis-grid">
+                    <div style="text-align: center;">
+                        <img src="https://via.placeholder.com/200x250/1E40AF/FFFFFF?text=Blue+Shirt" alt="Your clothing item" class="uploaded-image">
+                        <p style="margin-top: 10px;"><strong>Your Upload</strong></p>
+                    </div>
+                    
+                    <div>
+                        <div class="analysis-details">
+                            <h3 style="color: #FFD700; margin-bottom: 15px;">👔 Clothing Analysis</h3>
+                            <p><strong>Type:</strong> Dress Shirt</p>
+                            <p><strong>Colors:</strong> Blue, White accents</p>
+                            <p><strong>Style:</strong> Semi-formal, Professional</p>
+                            <p><strong>Material:</strong> Cotton blend</p>
+                            <p><strong>AI Confidence:</strong> 89%</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="margin-bottom: 20px; text-align: center;">🛍️ Recommended Matches</h3>
+                
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-image">👔</div>
+                        <h4>Navy Dress Pants - Slim Fit</h4>
+                        <p style="color: #e74c3c; font-weight: bold; margin: 10px 0;">$45.99</p>
+                        <p style="font-size: 0.9rem; color: #666;">95% Match</p>
+                        <p style="font-size: 0.8rem; color: #999;">from Demo Store</p>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">👔</div>
+                        <h4>Silk Red Tie - Professional</h4>
+                        <p style="color: #e74c3c; font-weight: bold; margin: 10px 0;">$24.99</p>
+                        <p style="font-size: 0.9rem; color: #666;">88% Match</p>
+                        <p style="font-size: 0.8rem; color: #999;">from Demo Store</p>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">👔</div>
+                        <h4>Navy Blazer - Classic Business</h4>
+                        <p style="color: #e74c3c; font-weight: bold; margin: 10px 0;">$129.99</p>
+                        <p style="font-size: 0.9rem; color: #666;">92% Match</p>
+                        <p style="font-size: 0.8rem; color: #999;">from Demo Store</p>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">👔</div>
+                        <h4>Charcoal Gray Dress Pants</h4>
+                        <p style="color: #e74c3c; font-weight: bold; margin: 10px 0;">$52.00</p>
+                        <p style="font-size: 0.9rem; color: #666;">87% Match</p>
+                        <p style="font-size: 0.8rem; color: #999;">from Demo Store</p>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">👔</div>
+                        <h4>Burgundy Silk Tie - Premium</h4>
+                        <p style="color: #e74c3c; font-weight: bold; margin: 10px 0;">$32.99</p>
+                        <p style="font-size: 0.9rem; color: #666;">84% Match</p>
+                        <p style="font-size: 0.8rem; color: #999;">from Demo Store</p>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">👔</div>
+                        <h4>Light Gray Sport Coat</h4>
+                        <p style="color: #e74c3c; font-weight: bold; margin: 10px 0;">$98.50</p>
+                        <p style="font-size: 0.9rem; color: #666;">81% Match</p>
+                        <p style="font-size: 0.8rem; color: #999;">from Demo Store</p>
+                    </div>
+                </div>
+                
+                <button class="reset-button" onclick="resetDemo()">Upload Another Item</button>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <h3>🤖 AI Image Analysis</h3>
+                <p>Advanced computer vision identifies clothing type, colors, patterns, material, and style attributes with high accuracy.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>👗 Smart Style Matching</h3>
+                <p>Fashion expertise built into AI algorithms that understand color theory, style compatibility, and seasonal appropriateness.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>🛒 Real Product Search</h3>
+                <p>Searches multiple shopping platforms to find actual products you can buy, with prices and direct purchase links.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function startDemo() {
+            // Simulate loading
+            const uploadSection = document.getElementById('upload-section');
+            const resultsSection = document.getElementById('results-section');
+            
+            uploadSection.style.opacity = '0.5';
+            setTimeout(() => {
+                uploadSection.classList.add('hidden');
+                resultsSection.classList.remove('hidden');
+                window.scrollTo(0, 0);
+            }, 1000);
+        }
+
+        function resetDemo() {
+            const uploadSection = document.getElementById('upload-section');
+            const resultsSection = document.getElementById('results-section');
+            
+            resultsSection.classList.add('hidden');
+            uploadSection.classList.remove('hidden');
+            uploadSection.style.opacity = '1';
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
