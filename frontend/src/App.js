@@ -8,31 +8,31 @@ import './App.css';
 
 const AppContainer = styled.div`
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  font-family: 'Poppins', sans-serif;
+  background: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  color: #1a1a1a;
 `;
 
 const Header = styled.header`
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  padding: 20px 0;
+  background: #ffffff;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 60px 0 40px;
   text-align: center;
-  color: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 `;
 
 const Title = styled.h1`
   margin: 0;
   font-size: 3rem;
   font-weight: 700;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: -0.02em;
+  color: #1a1a1a;
 `;
 
 const Subtitle = styled.p`
   margin: 10px 0 0;
   font-size: 1.2rem;
-  font-weight: 300;
-  opacity: 0.9;
+  font-weight: 400;
+  color: #666666;
 `;
 
 const MainContent = styled.main`
@@ -56,16 +56,16 @@ const Step = styled.div`
   display: flex;
   align-items: center;
   margin: 0 20px;
-  color: white;
+  color: #666666;
   font-weight: 500;
   
   ${props => props.active && `
-    color: #FFD700;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    color: #1a1a1a;
+    font-weight: 600;
   `}
   
   ${props => props.completed && `
-    color: #90EE90;
+    color: #28a745;
   `}
   
   @media (max-width: 768px) {
@@ -77,13 +77,14 @@ const StepNumber = styled.span`
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: ${props => props.active ? '#FFD700' : props.completed ? '#90EE90' : 'rgba(255, 255, 255, 0.3)'};
-  color: ${props => props.active || props.completed ? '#333' : 'white'};
+  background: ${props => props.active ? '#1a1a1a' : props.completed ? '#28a745' : '#e5e5e5'};
+  color: ${props => props.active || props.completed ? 'white' : '#666666'};
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 10px;
   font-weight: 600;
+  font-size: 0.9rem;
 `;
 
 function App() {
@@ -154,8 +155,8 @@ function App() {
   return (
     <AppContainer>
       <Header>
-        <Title>AI Wardrobe</Title>
-        <Subtitle>Discover perfect clothing matches with artificial intelligence</Subtitle>
+        <Title>AI WARDROBE</Title>
+        <Subtitle>Where fashion meets intelligence</Subtitle>
       </Header>
       
       <MainContent>
@@ -172,12 +173,12 @@ function App() {
 
         {error && (
           <div style={{ 
-            background: 'rgba(255, 0, 0, 0.1)', 
-            border: '1px solid red', 
+            background: '#fff3cd', 
+            border: '1px solid #ffeaa7', 
             borderRadius: '8px', 
-            padding: '15px', 
+            padding: '16px', 
             margin: '20px 0', 
-            color: 'white',
+            color: '#856404',
             textAlign: 'center'
           }}>
             <strong>Error:</strong> {error}
@@ -185,12 +186,13 @@ function App() {
               onClick={handleReset}
               style={{
                 marginLeft: '20px',
-                padding: '5px 15px',
-                background: 'white',
-                color: '#333',
+                padding: '8px 16px',
+                background: '#1a1a1a',
+                color: 'white',
                 border: 'none',
                 borderRadius: '4px',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                fontSize: '0.9rem'
               }}
             >
               Try Again

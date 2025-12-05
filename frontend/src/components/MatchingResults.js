@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const ResultsContainer = styled.div`
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
+  background: white;
+  border-radius: 12px;
   padding: 40px;
   margin: 40px auto;
   max-width: 1200px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e5e5;
 `;
 
 const Header = styled.div`
@@ -18,14 +17,14 @@ const Header = styled.div`
 `;
 
 const Title = styled.h2`
-  color: white;
+  color: #1a1a1a;
   font-size: 2.5rem;
   margin-bottom: 15px;
-  font-weight: 700;
+  font-weight: 600;
 `;
 
 const Subtitle = styled.p`
-  color: rgba(255, 255, 255, 0.9);
+  color: #6c757d;
   font-size: 1.2rem;
   margin-bottom: 30px;
 `;
@@ -39,9 +38,9 @@ const OriginalImageContainer = styled.div`
 const OriginalImage = styled.img`
   max-width: 150px;
   max-height: 150px;
-  border-radius: 15px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  border: 3px solid #FFD700;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 3px solid #007bff;
 `;
 
 const FilterBar = styled.div`
@@ -53,19 +52,20 @@ const FilterBar = styled.div`
 `;
 
 const FilterButton = styled.button`
-  background: ${props => props.active ? 'linear-gradient(135deg, #FFD700, #FFA500)' : 'rgba(255, 255, 255, 0.2)'};
-  color: ${props => props.active ? '#333' : 'white'};
-  border: 1px solid ${props => props.active ? '#FFD700' : 'rgba(255, 255, 255, 0.3)'};
+  background: ${props => props.active ? '#007bff' : 'white'};
+  color: ${props => props.active ? 'white' : '#6c757d'};
+  border: 1px solid ${props => props.active ? '#007bff' : '#dee2e6'};
   padding: 10px 20px;
-  border-radius: 25px;
+  border-radius: 6px;
   font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
   
   &:hover {
-    background: ${props => props.active ? 'linear-gradient(135deg, #FFD700, #FFA500)' : 'rgba(255, 255, 255, 0.3)'};
-    transform: translateY(-1px);
+    background: ${props => props.active ? '#0056b3' : '#f8f9fa'};
+    border-color: ${props => props.active ? '#0056b3' : '#007bff'};
+    color: ${props => props.active ? 'white' : '#007bff'};
   }
 `;
 
@@ -77,16 +77,17 @@ const ProductGrid = styled.div`
 `;
 
 const ProductCard = styled.div`
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 15px;
+  background: white;
+  border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid #e5e5e5;
   
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    border-color: #007bff;
   }
 `;
 
@@ -94,26 +95,26 @@ const ProductImage = styled.img`
   width: 100%;
   height: 200px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 8px;
   margin-bottom: 15px;
-  background: #f0f0f0;
+  background: #f8f9fa;
 `;
 
 const ProductImagePlaceholder = styled.div`
   width: 100%;
   height: 200px;
-  background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
-  border-radius: 10px;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border-radius: 8px;
   margin-bottom: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #999;
+  color: #6c757d;
   font-size: 3rem;
 `;
 
 const ProductTitle = styled.h3`
-  color: #333;
+  color: #1a1a1a;
   font-size: 1.1rem;
   margin-bottom: 10px;
   font-weight: 600;
@@ -125,24 +126,24 @@ const ProductTitle = styled.h3`
 `;
 
 const ProductPrice = styled.div`
-  color: #e74c3c;
+  color: #28a745;
   font-size: 1.2rem;
   font-weight: 700;
   margin-bottom: 10px;
 `;
 
 const ProductSource = styled.div`
-  color: #7f8c8d;
+  color: #6c757d;
   font-size: 0.9rem;
   margin-bottom: 10px;
   font-style: italic;
 `;
 
 const RelevanceScore = styled.div`
-  background: linear-gradient(135deg, #6bcf7f, #4ecdc4);
+  background: linear-gradient(135deg, #28a745, #20c997);
   color: white;
   padding: 4px 8px;
-  border-radius: 12px;
+  border-radius: 6px;
   font-size: 0.8rem;
   font-weight: 600;
   display: inline-block;
@@ -150,10 +151,10 @@ const RelevanceScore = styled.div`
 `;
 
 const ProductLink = styled.a`
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: #007bff;
   color: white;
   padding: 8px 16px;
-  border-radius: 20px;
+  border-radius: 6px;
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
@@ -161,17 +162,18 @@ const ProductLink = styled.a`
   transition: all 0.3s ease;
   
   &:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    background: #0056b3;
+    text-decoration: none;
+    color: white;
   }
 `;
 
 const ResetButton = styled.button`
-  background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+  background: #dc3545;
   color: white;
   border: none;
   padding: 15px 30px;
-  border-radius: 25px;
+  border-radius: 6px;
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
@@ -180,20 +182,20 @@ const ResetButton = styled.button`
   margin: 0 auto;
   
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+    background: #c82333;
   }
 `;
 
 const NoResults = styled.div`
   text-align: center;
-  color: white;
+  color: #6c757d;
   font-size: 1.2rem;
   padding: 60px 20px;
   
   h3 {
     margin-bottom: 15px;
     font-size: 1.5rem;
+    color: #1a1a1a;
   }
   
   p {

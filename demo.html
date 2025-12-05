@@ -12,10 +12,10 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: #ffffff;
             min-height: 100vh;
-            color: white;
+            color: #1a1a1a;
         }
 
         .container {
@@ -26,37 +26,42 @@
 
         .header {
             text-align: center;
-            padding: 40px 0;
+            padding: 60px 0 40px;
+            background: #ffffff;
+            border-bottom: 1px solid #f0f0f0;
         }
 
         .header h1 {
             font-size: 3.5rem;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            color: #1a1a1a;
+            font-weight: 700;
+            letter-spacing: -0.02em;
         }
 
         .header p {
             font-size: 1.3rem;
-            opacity: 0.9;
+            color: #666666;
+            font-weight: 400;
         }
 
         .upload-area {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
+            background: #ffffff;
+            border: 2px solid #e5e5e5;
+            border-radius: 12px;
             padding: 60px;
             margin: 40px auto;
             max-width: 600px;
             text-align: center;
-            border: 3px dashed rgba(255, 255, 255, 0.5);
             transition: all 0.3s ease;
-            cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
         .upload-area:hover {
-            border-color: #FFD700;
-            background: rgba(255, 215, 0, 0.05);
+            border-color: #1a1a1a;
+            background: #fafafa;
             transform: translateY(-2px);
+            box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.1);
         }
 
         .upload-icon {
@@ -67,31 +72,98 @@
         .upload-area h2 {
             font-size: 2rem;
             margin-bottom: 15px;
+            color: #1a1a1a;
+            font-weight: 600;
         }
 
         .upload-area p {
             font-size: 1.1rem;
             margin-bottom: 30px;
-            opacity: 0.8;
+            color: #666666;
             line-height: 1.6;
         }
 
         .upload-button {
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            color: #333;
+            background: #1a1a1a;
+            color: white;
             border: none;
-            padding: 15px 30px;
-            border-radius: 25px;
-            font-size: 1.1rem;
+            padding: 16px 24px;
+            border-radius: 8px;
+            font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            min-width: 180px;
         }
 
         .upload-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+            background: #333333;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .camera-button {
+            background: #007bff !important;
+            color: white !important;
+            border: none !important;
+            padding: 16px 24px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            min-width: 180px;
+            display: inline-block !important;
+            visibility: visible !important;
+        }
+
+        .camera-button:hover {
+            background: #0056b3;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
+        }
+
+        .button-group {
+            display: flex !important;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            width: 100% !important;
+        }
+
+        .image-preview {
+            max-width: 300px;
+            max-height: 300px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            display: block;
+        }
+
+        .analyze-button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 20px;
+        }
+
+        .analyze-button:hover {
+            background: #218838;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.15);
         }
 
         .features {
@@ -102,38 +174,50 @@
         }
 
         .feature {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
+            background: #ffffff;
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
             padding: 30px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.1);
         }
 
         .feature h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
-            color: #FFD700;
+            color: #1a1a1a;
+            font-weight: 600;
         }
 
         .feature p {
-            opacity: 0.9;
+            color: #666666;
             line-height: 1.6;
         }
 
         .demo-note {
-            background: rgba(255, 215, 0, 0.1);
-            border: 2px solid #FFD700;
-            border-radius: 15px;
-            padding: 20px;
+            background: #f8f9fa;
+            border: 2px solid #e5e5e5;
+            border-radius: 12px;
+            padding: 24px;
             margin: 40px auto;
             max-width: 800px;
             text-align: center;
         }
 
         .demo-note h3 {
-            color: #FFD700;
-            margin-bottom: 10px;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .demo-note p {
+            color: #666666;
         }
 
         .hidden {
@@ -141,12 +225,21 @@
         }
 
         .demo-results {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
+            background: #ffffff;
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
             padding: 40px;
             margin: 40px auto;
             max-width: 1000px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .demo-results h2 {
+            color: #1a1a1a;
+        }
+
+        .demo-results p {
+            color: #666666;
         }
 
         .analysis-grid {
@@ -163,10 +256,22 @@
         }
 
         .analysis-details {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 10px;
+            background: #f8f9fa;
+            border: 1px solid #e5e5e5;
+            padding: 24px;
+            border-radius: 8px;
             margin-bottom: 20px;
+        }
+
+        .analysis-details h3 {
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .analysis-details p {
+            color: #666666;
+            margin-bottom: 8px;
         }
 
         .products-grid {
@@ -176,17 +281,18 @@
         }
 
         .product-card {
-            background: rgba(255, 255, 255, 0.95);
-            color: #333;
-            border-radius: 15px;
+            background: #ffffff;
+            color: #1a1a1a;
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
             padding: 20px;
-            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
 
         .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
         .product-image {
@@ -202,22 +308,25 @@
         }
 
         .reset-button {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            background: #1a1a1a;
             color: white;
             border: none;
-            padding: 15px 30px;
-            border-radius: 25px;
-            font-size: 1.1rem;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             display: block;
             margin: 30px auto 0;
             transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .reset-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+            background: #333333;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
         @media (max-width: 768px) {
@@ -230,27 +339,51 @@
             .upload-area {
                 padding: 40px 20px;
             }
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            .upload-button, .camera-button {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header class="header">
-            <h1>AI Wardrobe</h1>
-            <p>Discover perfect clothing matches with artificial intelligence</p>
+            <h1>AI WARDROBE</h1>
+            <p>Where fashion meets intelligence</p>
         </header>
 
         <div class="demo-note">
-            <h3>🎯 Demo Mode</h3>
-            <p>This is a demonstration of the AI Wardrobe system. Click "Upload Image" below to see how the interface works with sample data. In the full version, you would upload a real photo of your clothing item for AI analysis.</p>
+            <h3>📱 Mobile-Optimized</h3>
+            <p>This AI Wardrobe system is designed for mobile devices. Use the camera button below to take a photo of your clothing item directly, or choose from your photo gallery. Our AI will analyze the image and find perfect matching pieces for you!</p>
         </div>
 
         <div id="upload-section">
-            <div class="upload-area" onclick="startDemo()">
+            <div class="upload-area">
                 <div class="upload-icon">📸</div>
                 <h2>Upload Your Clothing Item</h2>
                 <p>Take a clear photo of a piece of clothing you own and let our AI find perfect matching pieces for you</p>
-                <button class="upload-button">Choose Image (Demo)</button>
+                
+                <div class="button-group">
+                    <button class="upload-button" onclick="triggerFileUpload()">
+                        📁 Choose from Gallery
+                    </button>
+                    <button class="camera-button" onclick="startCamera()">
+                        📷 Take Photo
+                    </button>
+                </div>
+                
+                <input type="file" id="fileInput" accept="image/*" style="display: none;" onchange="handleFileSelect(event)">
+                <input type="file" id="cameraInput" accept="image/*" capture="environment" style="display: none;" onchange="handleCameraCapture(event)">
+                
                 <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.7;">
                     Supported formats: JPEG, PNG, GIF, WebP
                 </p>
@@ -269,14 +402,14 @@
                     </div>
                     
                     <div>
-                        <div class="analysis-details">
-                            <h3 style="color: #FFD700; margin-bottom: 15px;">👔 Clothing Analysis</h3>
-                            <p><strong>Type:</strong> Dress Shirt</p>
-                            <p><strong>Colors:</strong> Blue, White accents</p>
-                            <p><strong>Style:</strong> Semi-formal, Professional</p>
-                            <p><strong>Material:</strong> Cotton blend</p>
-                            <p><strong>AI Confidence:</strong> 89%</p>
-                        </div>
+                <div class="analysis-details">
+                    <h3 style="color: #007bff; margin-bottom: 15px;">👔 Clothing Analysis</h3>
+                    <p><strong>Type:</strong> Dress Shirt</p>
+                    <p><strong>Colors:</strong> Blue, White accents</p>
+                    <p><strong>Style:</strong> Semi-formal, Professional</p>
+                    <p><strong>Material:</strong> Cotton blend</p>
+                    <p><strong>AI Confidence:</strong> 89%</p>
+                </div>
                     </div>
                 </div>
 
@@ -355,17 +488,85 @@
     </div>
 
     <script>
+        let capturedImage = null;
+
+        function triggerFileUpload() {
+            document.getElementById('fileInput').click();
+        }
+
+        function startCamera() {
+            document.getElementById('cameraInput').click();
+        }
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file) {
+                displayImagePreview(file);
+            }
+        }
+
+        function handleCameraCapture(event) {
+            const file = event.target.files[0];
+            if (file) {
+                displayImagePreview(file);
+            }
+        }
+
+        function displayImagePreview(file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                capturedImage = e.target.result;
+                
+                // Update the upload area to show the captured image
+                const uploadArea = document.querySelector('.upload-area');
+                uploadArea.innerHTML = `
+                    <div class="upload-icon">✅</div>
+                    <h2>Image Captured!</h2>
+                    <img src="${capturedImage}" alt="Captured clothing item" class="image-preview">
+                    <p style="margin: 15px 0; color: #666666;">Ready to analyze your clothing item</p>
+                    <div class="button-group">
+                        <button class="analyze-button" onclick="analyzeImage()">
+                            🔍 Analyze & Find Matches
+                        </button>
+                        <button class="upload-button" onclick="resetUpload()">
+                            📷 Take Another Photo
+                        </button>
+                    </div>
+                `;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function resetUpload() {
+            location.reload(); // Simple way to reset the interface
+        }
+
+        function analyzeImage() {
+            if (capturedImage) {
+                // Show loading state
+                const uploadArea = document.querySelector('.upload-area');
+                uploadArea.innerHTML = `
+                    <div class="upload-icon">⏳</div>
+                    <h2>Analyzing Your Image...</h2>
+                    <p style="color: #666666; margin: 20px 0;">Our AI is identifying colors, style, and finding perfect matches</p>
+                    <div style="width: 40px; height: 40px; border: 3px solid #e5e5e5; border-top-color: #007bff; border-radius: 50%; animation: spin 1s linear infinite; margin: 20px auto;"></div>
+                `;
+                
+                // Simulate API call and show results after delay
+                setTimeout(() => {
+                    startDemo();
+                }, 2000);
+            }
+        }
+
         function startDemo() {
-            // Simulate loading
+            // Original demo function
             const uploadSection = document.getElementById('upload-section');
             const resultsSection = document.getElementById('results-section');
             
-            uploadSection.style.opacity = '0.5';
-            setTimeout(() => {
-                uploadSection.classList.add('hidden');
-                resultsSection.classList.remove('hidden');
-                window.scrollTo(0, 0);
-            }, 1000);
+            uploadSection.classList.add('hidden');
+            resultsSection.classList.remove('hidden');
+            window.scrollTo(0, 0);
         }
 
         function resetDemo() {
@@ -376,6 +577,9 @@
             uploadSection.classList.remove('hidden');
             uploadSection.style.opacity = '1';
             window.scrollTo(0, 0);
+            
+            // Reset the upload area to original state
+            location.reload();
         }
     </script>
 </body>

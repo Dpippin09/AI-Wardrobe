@@ -2,18 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 
 const AnalysisContainer = styled.div`
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
   padding: 40px;
   margin: 40px auto;
   max-width: 800px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 `;
 
 const Title = styled.h2`
-  color: white;
+  color: #1a1a1a;
   font-size: 2rem;
   margin-bottom: 30px;
   text-align: center;
@@ -44,21 +43,21 @@ const UploadedImage = styled.img`
 `;
 
 const AnalysisDetails = styled.div`
-  color: white;
+  color: #1a1a1a;
 `;
 
 const AnalysisSection = styled.div`
   margin-bottom: 25px;
   padding: 20px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #f8f9fa;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
 `;
 
 const SectionTitle = styled.h3`
   font-size: 1.2rem;
   margin-bottom: 15px;
-  color: #FFD700;
+  color: #1a1a1a;
   font-weight: 600;
 `;
 
@@ -68,7 +67,7 @@ const DetailItem = styled.div`
   align-items: center;
   margin-bottom: 10px;
   padding: 8px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid #e5e5e5;
   
   &:last-child {
     border-bottom: none;
@@ -78,12 +77,13 @@ const DetailItem = styled.div`
 
 const DetailLabel = styled.span`
   font-weight: 500;
-  opacity: 0.9;
+  color: #666666;
 `;
 
 const DetailValue = styled.span`
   font-weight: 600;
   text-transform: capitalize;
+  color: #1a1a1a;
 `;
 
 const ColorPalette = styled.div`
@@ -98,8 +98,8 @@ const ColorSwatch = styled.div`
   height: 30px;
   border-radius: 50%;
   background-color: ${props => props.color};
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border: 2px solid #e5e5e5;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: relative;
   cursor: help;
   
@@ -109,7 +109,7 @@ const ColorSwatch = styled.div`
     top: -35px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.8);
+    background: #1a1a1a;
     color: white;
     padding: 4px 8px;
     border-radius: 4px;
@@ -122,7 +122,7 @@ const ColorSwatch = styled.div`
 const ConfidenceBar = styled.div`
   width: 100%;
   height: 8px;
-  background: rgba(255, 255, 255, 0.2);
+  background: #e5e5e5;
   border-radius: 4px;
   overflow: hidden;
   margin-top: 5px;
@@ -131,7 +131,7 @@ const ConfidenceBar = styled.div`
 const ConfidenceFill = styled.div`
   width: ${props => props.percentage}%;
   height: 100%;
-  background: linear-gradient(90deg, #ff6b6b, #ffd93d, #6bcf7f);
+  background: linear-gradient(90deg, #28a745, #20c997, #17a2b8);
   transition: width 0.3s ease;
 `;
 
