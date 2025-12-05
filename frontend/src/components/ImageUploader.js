@@ -11,6 +11,12 @@ const UploadContainer = styled.div`
   margin: 40px auto;
   max-width: 600px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  
+  @media (max-width: 768px) {
+    padding: 30px 20px;
+    margin: 20px auto;
+    border-radius: 8px;
+  }
 `;
 
 const DropZone = styled.div`
@@ -26,6 +32,15 @@ const DropZone = styled.div`
     background: #fafafa;
     transform: translateY(-2px);
   }
+  
+  @media (max-width: 768px) {
+    padding: 40px 20px;
+    border-radius: 8px;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 30px 15px;
+  }
 `;
 
 const UploadIcon = styled.div`
@@ -33,6 +48,11 @@ const UploadIcon = styled.div`
   color: ${props => props.isDragActive ? '#1a1a1a' : '#666666'};
   margin-bottom: 20px;
   transition: all 0.3s ease;
+  
+  @media (max-width: 768px) {
+    font-size: 3rem;
+    margin-bottom: 15px;
+  }
 `;
 
 const UploadText = styled.h2`
@@ -40,6 +60,15 @@ const UploadText = styled.h2`
   font-size: 1.8rem;
   margin-bottom: 15px;
   font-weight: 600;
+  
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 1.3rem;
+  }
 `;
 
 const UploadSubtext = styled.p`
@@ -47,6 +76,17 @@ const UploadSubtext = styled.p`
   font-size: 1.1rem;
   margin-bottom: 30px;
   line-height: 1.5;
+  
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    margin-bottom: 25px;
+    padding: 0 10px;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
 `;
 
 const FileInput = styled.input`
@@ -66,6 +106,8 @@ const UploadButton = styled.button`
   text-transform: uppercase;
   letter-spacing: 0.5px;
   min-width: 180px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
   
   &:hover {
     background: #333333;
@@ -75,6 +117,19 @@ const UploadButton = styled.button`
   
   &:active {
     transform: translateY(0);
+  }
+  
+  @media (max-width: 768px) {
+    padding: 18px 24px;
+    font-size: 1rem;
+    min-width: 200px;
+    border-radius: 12px;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 16px 20px;
+    font-size: 0.9rem;
+    min-width: 160px;
   }
 `;
 
@@ -91,6 +146,8 @@ const CameraButton = styled.button`
   text-transform: uppercase;
   letter-spacing: 0.5px;
   min-width: 180px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
   
   &:hover {
     background: #0056b3;
@@ -100,6 +157,19 @@ const CameraButton = styled.button`
   
   &:active {
     transform: translateY(0);
+  }
+  
+  @media (max-width: 768px) {
+    padding: 18px 24px;
+    font-size: 1rem;
+    min-width: 200px;
+    border-radius: 12px;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 16px 20px;
+    font-size: 0.9rem;
+    min-width: 160px;
   }
 `;
 
@@ -113,10 +183,20 @@ const ButtonGroup = styled.div`
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: center;
+    gap: 12px;
+    margin-bottom: 25px;
     
     button {
       width: 100%;
-      max-width: 250px;
+      max-width: 280px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    gap: 10px;
+    
+    button {
+      max-width: 240px;
     }
   }
 `;
@@ -125,6 +205,12 @@ const SupportedFormats = styled.div`
   margin-top: 20px;
   color: #999999;
   font-size: 0.9rem;
+  
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+    margin-top: 15px;
+    padding: 0 10px;
+  }
 `;
 
 const ImageUploader = ({ onImageUpload }) => {
