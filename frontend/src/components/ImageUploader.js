@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { useDropzone } from 'react-dropzone';
 import styled from 'styled-components';
 
@@ -57,14 +57,15 @@ const UploadButton = styled.button`
   background: #1a1a1a;
   color: white;
   border: none;
-  padding: 16px 32px;
+  padding: 16px 24px;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  min-width: 180px;
   
   &:hover {
     background: #333333;
@@ -77,6 +78,49 @@ const UploadButton = styled.button`
   }
 `;
 
+const CameraButton = styled.button`
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 16px 24px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  min-width: 180px;
+  
+  &:hover {
+    background: #0056b3;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    
+    button {
+      width: 100%;
+      max-width: 250px;
+    }
+  }
+`;
+
 const SupportedFormats = styled.div`
   margin-top: 20px;
   color: #999999;
@@ -84,6 +128,8 @@ const SupportedFormats = styled.div`
 `;
 
 const ImageUploader = ({ onImageUpload }) => {
+  const cameraInputRef = useRef(null);
+  
   const onDrop = useCallback((acceptedFiles) => {
     const file = acceptedFiles[0];
     if (file) {
@@ -100,10 +146,31 @@ const ImageUploader = ({ onImageUpload }) => {
     maxSize: 16 * 1024 * 1024 // 16MB
   });
 
+  const handleCameraClick = () => {
+    if (cameraInputRef.current) {
+      cameraInputRef.current.click();
+    }
+  };
+
+  const handleCameraCapture = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      onImageUpload(file);
+    }
+  };
+
   return (
     <UploadContainer>
       <DropZone {...getRootProps()} isDragActive={isDragActive}>
         <FileInput {...getInputProps()} />
+        <input
+          ref={cameraInputRef}
+          type="file"
+          accept="image/*"
+          capture="environment"
+          style={{ display: 'none' }}
+          onChange={handleCameraCapture}
+        />
         <UploadIcon isDragActive={isDragActive}>
           📸
         </UploadIcon>
@@ -113,9 +180,14 @@ const ImageUploader = ({ onImageUpload }) => {
         <UploadSubtext>
           Take a clear photo of a piece of clothing you own and let our AI find perfect matching pieces for you
         </UploadSubtext>
-        <UploadButton>
-          Choose Image
-        </UploadButton>
+        <ButtonGroup>
+          <UploadButton>
+            📁 Choose from Gallery
+          </UploadButton>
+          <CameraButton onClick={handleCameraClick}>
+            📷 Take Photo
+          </CameraButton>
+        </ButtonGroup>
         <SupportedFormats>
           Supported formats: JPEG, PNG, GIF, WebP (Max 16MB)
         </SupportedFormats>

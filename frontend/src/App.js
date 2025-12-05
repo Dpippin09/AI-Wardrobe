@@ -41,6 +41,29 @@ const MainContent = styled.main`
   padding: 40px 20px;
 `;
 
+const IntroNote = styled.div`
+  background: #f8f9fa;
+  border: 2px solid #e5e5e5;
+  border-radius: 12px;
+  padding: 24px;
+  margin: 40px auto;
+  max-width: 800px;
+  text-align: center;
+  
+  h3 {
+    color: #1a1a1a;
+    margin-bottom: 12px;
+    font-weight: 600;
+    font-size: 1.3rem;
+  }
+  
+  p {
+    color: #666666;
+    line-height: 1.6;
+    margin: 0;
+  }
+`;
+
 const StepIndicator = styled.div`
   display: flex;
   justify-content: center;
@@ -160,6 +183,13 @@ function App() {
       </Header>
       
       <MainContent>
+        {currentStep === 1 && (
+          <IntroNote>
+            <h3>📱 Mobile-Optimized AI Wardrobe</h3>
+            <p>Take a photo of your clothing item using your mobile camera or choose from your gallery. Our AI will analyze the style, colors, and material to find perfect matching pieces for you!</p>
+          </IntroNote>
+        )}
+        
         <StepIndicator>
           {steps.map((step) => (
             <Step key={step.number} active={step.active} completed={step.completed}>
